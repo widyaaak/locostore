@@ -1,0 +1,13 @@
+/* Mobile Fix */
+@media (max-width: 480px) {
+    .products {
+        grid-template-columns: 1fr !important;
+        padding: 1rem !important;
+    }
+    .product-card {
+        padding: 1.5rem !important;
+    }
+    .hero h1 {
+        font-size: 2rem !important;
+    }
+}
