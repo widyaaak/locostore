@@ -64,6 +64,10 @@
             padding: 120px 2rem 80px;
             text-align: center;
             position: relative;
+            min-height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         
         .hero::before {
@@ -77,7 +81,7 @@
             background-size: cover;
         }
         
-        .hero h1 {
+        .hero-content h1 {
             font-size: 3.5rem;
             margin-bottom: 1rem;
             background: linear-gradient(45deg, var(--primary), var(--accent));
@@ -85,7 +89,7 @@
             -webkit-text-fill-color: transparent;
         }
         
-        .hero p {
+        .hero-content p {
             font-size: 1.3rem;
             margin-bottom: 2rem;
             opacity: 0.9;
@@ -97,7 +101,7 @@
             margin: 0 auto;
             padding: 4rem 2rem;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
             gap: 2rem;
         }
         
@@ -109,6 +113,13 @@
             position: relative;
             overflow: hidden;
             transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(50px);
+        }
+        
+        .product-card.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
         
         .product-card::before {
@@ -248,6 +259,14 @@
             padding: 2rem;
             border-radius: 15px;
             border: 1px solid #333;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.6s ease;
+        }
+        
+        .support-card.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
         
         .support-card i {
@@ -291,19 +310,46 @@
             animation: float 3s ease-in-out infinite;
         }
         
-        /* Responsive */
+        /* Mobile Fixes */
         @media (max-width: 768px) {
-            .hero h1 {
+            .hero-content h1 {
                 font-size: 2.5rem;
             }
             
             .products {
                 grid-template-columns: 1fr;
                 padding: 2rem 1rem;
+                gap: 1.5rem;
             }
             
             .product-card {
                 padding: 1.5rem;
+            }
+            
+            .product-title {
+                font-size: 1.5rem;
+            }
+            
+            .price {
+                font-size: 2rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+            
+            .hero-content p {
+                font-size: 1rem;
+            }
+            
+            .products {
+                padding: 1rem;
+            }
+            
+            .product-card {
+                padding: 1.5rem 1rem;
             }
         }
     </style>
@@ -318,7 +364,7 @@
 
     <!-- Hero Section -->
     <section class="hero">
-        <div class="container">
+        <div class="hero-content">
             <h1>PREMIUM BOT SCRIPTS</h1>
             <p>Automate Your Business dengan Script Bot WhatsApp & Telegram Terbaik</p>
             <div class="floating">
@@ -351,7 +397,7 @@
                 <li><i class="fas fa-check"></i> Cloud Access & Console Control</li>
             </ul>
             
-            <a href="https://wa.me/628xxxxxx?text=Halo%20LOCO%20STORE!%20Saya%20mau%20beli%20BOT%20WHATSAPP%20STORE%20V8%20Rp%2020.000" 
+            <a href="https://wa.me/6281234567890?text=Halo%20LOCO%20STORE!%20Saya%20mau%20beli%20BOT%20WHATSAPP%20STORE%20V8%20Rp%2020.000" 
                class="whatsapp-btn" target="_blank">
                <i class="fab fa-whatsapp"></i> BELI SEKARANG VIA WHATSAPP
             </a>
@@ -379,7 +425,7 @@
                 <li><i class="fas fa-check"></i> Compatible All Server Types</li>
             </ul>
             
-            <a href="https://wa.me/628xxxxxx?text=Halo%20LOCO%20STORE!%20Saya%20mau%20beli%20BOT%20TELEGRAM%20AUTO%20ORDER%20Rp%2020.000" 
+            <a href="https://wa.me/6281234567890?text=Halo%20LOCO%20STORE!%20Saya%20mau%20beli%20BOT%20TELEGRAM%20AUTO%20ORDER%20Rp%2020.000" 
                class="whatsapp-btn" target="_blank">
                <i class="fab fa-whatsapp"></i> BELI SEKARANG VIA WHATSAPP
             </a>
@@ -448,25 +494,29 @@
     </footer>
 
     <script>
-        // Simple animation on scroll
+        // Animation on scroll
         document.addEventListener('DOMContentLoaded', function() {
             const cards = document.querySelectorAll('.product-card, .support-card');
             
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
-                        entry.target.style.opacity = '1';
-                        entry.target.style.transform = 'translateY(0)';
+                        entry.target.classList.add('visible');
                     }
                 });
             }, { threshold: 0.1 });
             
             cards.forEach(card => {
-                card.style.opacity = '0';
-                card.style.transform = 'translateY(50px)';
                 card.style.transition = 'all 0.6s ease';
                 observer.observe(card);
             });
+            
+            // Add visible class to first product cards after load
+            setTimeout(() => {
+                document.querySelectorAll('.product-card').forEach(card => {
+                    card.classList.add('visible');
+                });
+            }, 500);
         });
     </script>
 </body>
