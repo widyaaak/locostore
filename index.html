@@ -69,23 +69,6 @@
             align-items: center;
             justify-content: center;
         }
-
-        <!-- 🔥 HOT DEAL BANNER -->
-<section class="hot-deal">
-    <div class="deal-content">
-        <div class="deal-badge">🔥 LIMITED OFFER</div>
-        <h3>DISKON 50% - HARI INI SAJA!</h3>
-        <div class="countdown" id="countdown">
-            <span id="hours">02</span>:<span id="minutes">15</span>:<span id="seconds">30</span>
-        </div>
-        <p>Harga normal: <span class="normal-price">Rp 40.000</span> → <span class="discount-price">Rp 20.000</span></p>
-    </div>
-</section>
-
-<!-- Products Section -->
-<section class="products">
-    <!-- produk cards di sini -->
-</section>
         
         .hero::before {
             content: '';
@@ -110,6 +93,77 @@
             font-size: 1.3rem;
             margin-bottom: 2rem;
             opacity: 0.9;
+        }
+        
+        /* Hot Deal Banner */
+        .hot-deal {
+            background: linear-gradient(45deg, #ff0000, #ff6b00, #ff0000);
+            background-size: 200% 200%;
+            animation: gradientShift 3s ease infinite;
+            padding: 2rem;
+            text-align: center;
+            margin: -30px 2rem 2rem;
+            border-radius: 15px;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(255, 107, 0, 0.3);
+            border: 2px solid #fff;
+        }
+
+        .deal-content h3 {
+            color: white;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .countdown {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: white;
+            margin: 1rem 0;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .countdown span {
+            background: rgba(0,0,0,0.3);
+            padding: 0.5rem 1rem;
+            border-radius: 10px;
+            margin: 0 0.2rem;
+        }
+
+        .deal-badge {
+            background: white;
+            color: #ff6b00;
+            padding: 0.5rem 1.5rem;
+            border-radius: 25px;
+            font-weight: bold;
+            display: inline-block;
+            margin-bottom: 1rem;
+            animation: pulse 2s infinite;
+        }
+
+        .normal-price {
+            text-decoration: line-through;
+            opacity: 0.8;
+            margin-right: 0.5rem;
+        }
+
+        .discount-price {
+            color: #ffff00;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
         }
         
         /* Products Grid */
@@ -226,6 +280,42 @@
             box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4);
         }
         
+        /* Testimoni Section */
+        .testimoni-section {
+            background: #1a1a1a;
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+        
+        .testimoni-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .testimoni-card {
+            background: linear-gradient(145deg, #2d2d2d, #1a1a1a);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 1px solid #333;
+            text-align: left;
+        }
+        
+        .testimoni-text {
+            font-style: italic;
+            margin-bottom: 1rem;
+            color: #ccc;
+        }
+        
+        .testimoni-author {
+            color: var(--primary);
+            font-weight: bold;
+        }
+        
         /* Payment Section */
         .payment-section {
             background: linear-gradient(135deg, #1a1a1a, #2d2d2d);
@@ -316,33 +406,7 @@
         .social-links a:hover {
             color: var(--primary);
         }
-
-        // Countdown Timer
-function updateCountdown() {
-    const target = new Date();
-    target.setHours(23, 59, 59, 999); // Set to end of day
-    
-    const now = new Date();
-    const diff = target - now;
-    
-    if (diff > 0) {
-        const hours = Math.floor(diff / (1000 * 60 * 60));
-        const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((diff % (1000 * 60)) / 1000);
         
-        document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
-        document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
-        document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
-    } else {
-        document.querySelector('.hot-deal').innerHTML = '<h3>🔥 PROMO TELAH BERAKHIR 🔥</h3>';
-    }
-}
-
-// Update countdown every second
-setInterval(updateCountdown, 1000);
-updateCountdown(); // Initial call
-
-    
         /* Animations */
         @keyframes float {
             0%, 100% { transform: translateY(0px); }
@@ -374,6 +438,19 @@ updateCountdown(); // Initial call
             }
             
             .price {
+                font-size: 2rem;
+            }
+            
+            .hot-deal {
+                margin: -20px 1rem 1rem;
+                padding: 1.5rem 1rem;
+            }
+            
+            .deal-content h3 {
+                font-size: 1.4rem;
+            }
+            
+            .countdown {
                 font-size: 2rem;
             }
         }
@@ -413,6 +490,18 @@ updateCountdown(); // Initial call
             <div class="floating">
                 <i class="fas fa-robot" style="font-size: 4rem; color: var(--primary);"></i>
             </div>
+        </div>
+    </section>
+
+    <!-- 🔥 HOT DEAL BANNER -->
+    <section class="hot-deal">
+        <div class="deal-content">
+            <div class="deal-badge">🔥 LIMITED OFFER</div>
+            <h3>DISKON 50% - HARI INI SAJA!</h3>
+            <div class="countdown" id="countdown">
+                <span id="hours">02</span>:<span id="minutes">15</span>:<span id="seconds">30</span>
+            </div>
+            <p>Harga normal: <span class="normal-price">Rp 40.000</span> → <span class="discount-price">Rp 20.000</span></p>
         </div>
     </section>
 
@@ -475,6 +564,33 @@ updateCountdown(); // Initial call
         </div>
     </section>
 
+    <!-- Testimoni Section -->
+    <section class="testimoni-section">
+        <h2 style="font-size: 2.5rem; margin-bottom: 1rem;">⭐ TESTIMONI BUYER</h2>
+        <p style="font-size: 1.2rem; opacity: 0.9;">Apa kata mereka yang sudah menggunakan bot kami</p>
+        
+        <div class="testimoni-grid">
+            <div class="testimoni-card">
+                <div class="testimoni-text">
+                    "Botnya work banget! Supportnya fast respon, beneran recommended buat yang mau jualan otomatis 😍"
+                </div>
+                <div class="testimoni-author">- Budi, Jakarta</div>
+            </div>
+            <div class="testimoni-card">
+                <div class="testimoni-text">
+                    "Ga nyangka cuma 20rb dapet bot sekualitas ini. Fiturnya lengkap banget, worth it banget 👍"
+                </div>
+                <div class="testimoni-author">- Sari, Bandung</div>
+            </div>
+            <div class="testimoni-card">
+                <div class="testimoni-text">
+                    "Update gratis dan support 24 jam. Penjualannya serious bgt, ga cuma jualan doang tapi juga bantu sampe jalan"
+                </div>
+                <div class="testimoni-author">- Rizki, Surabaya</div>
+            </div>
+        </div>
+    </section>
+
     <!-- Payment Section -->
     <section class="payment-section">
         <div class="container">
@@ -488,82 +604,4 @@ updateCountdown(); // Initial call
                     <p>Scan & Bayar</p>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <!-- Support Section -->
-    <section class="support-section">
-        <h2 style="font-size: 2.5rem; margin-bottom: 1rem;">🛠️ FULL SUPPORT</h2>
-        <p style="font-size: 1.2rem; opacity: 0.9;">Kami dampingi sampai bot Anda jalan!</p>
-        
-        <div class="support-grid">
-            <div class="support-card">
-                <i class="fas fa-sync-alt"></i>
-                <h3>FREE UPDATE</h3>
-                <p>Update versi terbaru gratis</p>
-            </div>
-            <div class="support-card">
-                <i class="fas fa-headset"></i>
-                <h3>24/7 SUPPORT</h3>
-                <p>Bantuan via WhatsApp</p>
-            </div>
-            <div class="support-card">
-                <i class="fas fa-shield-alt"></i>
-                <h3>GARANSI</h3>
-                <p>Garansi work 100%</p>
-            </div>
-            <div class="support-card">
-                <i class="fas fa-rocket"></i>
-                <h3>INSTANT DELIVERY</h3>
-                <p>File langsung setelah bayar</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="logo" style="font-size: 2.5rem;">LOCO<span>STORE</span></div>
-            <p style="margin: 1rem 0; opacity: 0.8;">Premium Bot Scripts Provider</p>
-            
-            <div class="social-links">
-                <a href="#"><i class="fab fa-whatsapp"></i></a>
-                <a href="#"><i class="fab fa-telegram"></i></a>
-                <a href="#"><i class="fab fa-instagram"></i></a>
-            </div>
-            
-            <p style="opacity: 0.6; margin-top: 2rem;">&copy; 2024 LOCO STORE. All rights reserved.</p>
-        </div>
-    </footer>
-
-    <script>
-        // Animation on scroll
-        document.addEventListener('DOMContentLoaded', function() {
-            const cards = document.querySelectorAll('.product-card, .support-card');
-            
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('visible');
-                    }
-                });
-            }, { threshold: 0.1 });
-            
-            cards.forEach(card => {
-                card.style.transition = 'all 0.6s ease';
-                observer.observe(card);
-            });
-            
-            // Add visible class to first product cards after load
-            setTimeout(() => {
-                document.querySelectorAll('.product-card').forEach(card => {
-                    card.classList.add('visible');
-                });
-            }, 500);
-        });
-    </script>
-</body>
-</html>
-
-
-
+        </div
