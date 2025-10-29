@@ -10,4 +10,94 @@
     .hero h1 {
         font-size: 2rem !important;
     }
+
+}
+
+/* Hot Deal Banner */
+.hot-deal {
+    background: linear-gradient(45deg, #ff0000, #ff6b00, #ff0000);
+    background-size: 200% 200%;
+    animation: gradientShift 3s ease infinite;
+    padding: 2rem;
+    text-align: center;
+    margin: 0 2rem;
+    border-radius: 15px;
+    position: relative;
+    top: -30px;
+    box-shadow: 0 10px 30px rgba(255, 107, 0, 0.3);
+    border: 2px solid #fff;
+}
+
+.deal-content h3 {
+    color: white;
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+.countdown {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: white;
+    margin: 1rem 0;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+.countdown span {
+    background: rgba(0,0,0,0.3);
+    padding: 0.5rem 1rem;
+    border-radius: 10px;
+    margin: 0 0.2rem;
+}
+
+.deal-badge {
+    background: white;
+    color: #ff6b00;
+    padding: 0.5rem 1.5rem;
+    border-radius: 25px;
+    font-weight: bold;
+    display: inline-block;
+    margin-bottom: 1rem;
+    animation: pulse 2s infinite;
+}
+
+.normal-price {
+    text-decoration: line-through;
+    opacity: 0.8;
+    margin-right: 0.5rem;
+}
+
+.discount-price {
+    color: #ffff00;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+/* Mobile responsive untuk hot deal */
+@media (max-width: 768px) {
+    .hot-deal {
+        margin: 0 1rem;
+        top: -20px;
+        padding: 1.5rem 1rem;
+    }
+    
+    .deal-content h3 {
+        font-size: 1.4rem;
+    }
+    
+    .countdown {
+        font-size: 2rem;
+    }
 }
